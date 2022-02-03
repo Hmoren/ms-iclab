@@ -17,7 +17,7 @@ pipeline {
         stage("Paso 2: Testear"){
             steps {
                 script {
-                sh "echo 'Test Code!!!'"
+                sh "echo 'Test Code!'"
                 // Run Maven on a Unix agent.
                 sh "mvn clean test -e"
                 }
@@ -35,6 +35,15 @@ pipeline {
                 //record the test results and archive the jar file.
                 success {
                     archiveArtifacts artifacts:'build/*.jar'
+                }
+            }
+        }
+        stage("Paso 4: Análisis SonarQube"){
+            steps {
+                withSonarQubeEnv('sonarqube') {
+                    sh "echo 'Calling sonar Service in another docker container!'"
+                    // Run Maven on a Unix agent to execute Sonar.
+                    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=definido-por-mi'
                 }
             }
         }

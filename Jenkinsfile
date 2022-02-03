@@ -7,7 +7,6 @@ pipeline {
      environment {
         NEXUS_USER_VAR      = credentials('NEXUS-USER')
         NEXUS_USER_PASS_VAR = credentials('NEXUS-PASS')
-        
     }
     stages {
         stage("Paso 1: Compliar"){
@@ -85,33 +84,32 @@ pipeline {
                 sh 'nohup bash java -jar DevOpsUsach2020-0.0.1-MS-ICLAB.jar & >/dev/null'
             }
         }
-        stage("Paso 7 Curl: Dormir(Esperar 40sg) "){
+        stage("Paso 7 Curl: Dormir(Esperar 40sg)"){
             steps {
                sh "sleep 40 && curl -X GET 'http://localhost:8082/rest/mscovid/test?msg=testing'"
             }
         }
-        // stage(" paso 8 Subir nueva Version"){
-        //     steps {
-        //         //archiveArtifacts artifacts:'build/*.jar'
-        //         nexusPublisher nexusInstanceId: 'nexus',
-        //             nexusRepositoryId: 'devops-usach-nexus',
-        //             packages: [
-        //                 [$class: 'MavenPackage',
-        //                     mavenAssetList: [
-        //                         [classifier: '',
-        //                         extension: 'jar',
-        //                         filePath: 'build/DevOpsUsach2020-0.0.1.jar']
-        //                     ],
-        //                     //cometario Daniel Tapia 3
-        //             mavenCoordinate: [
-        //                 artifactId: 'DevOpsUsach2020',
-        //                 groupId: 'com.devopsusach2020',
-        //                 packaging: 'jar',
-        //                 version: '0.0.4']
-        //             ]
-        //         ]
-        //     }
-        // }
+        stage("Paso 8 Subir nueva Version"){
+            steps {
+                //archiveArtifacts artifacts:'build/*.jar'
+                nexusPublisher nexusInstanceId: 'nexus',
+                    nexusRepositoryId: 'devops-usach-nexus',
+                    packages: [
+                        [$class: 'MavenPackage',
+                            mavenAssetList: [
+                                [classifier: '',
+                                extension: 'jar',
+                                filePath: 'DevOpsUsach2020-0.0.1-MS-ICLAB.jar']
+                            ],
+                    mavenCoordinate: [
+                        artifactId: 'DevOpsUsach2020',
+                        groupId: 'com.devopsusach2020',
+                        packaging: 'jar',
+                        version: 'release-v1-0-1']
+                    ]
+                ]
+            }
+        }
     }
     post {
         always {

@@ -8,8 +8,8 @@
 		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.ms-iclab</groupId>
-	<artifactId>Ms-Iclab</artifactId>
+	<groupId>com.devopsusach2020</groupId>
+	<artifactId>devopsusach2020</artifactId>
 	<version>0.0.1</version>
 	<name>Ms-Iclab</name>
 	<description>Proyecto de ejemplo para el desarrollo del diplomado DevOps Universidad de Santiago de Chile 2020</description>

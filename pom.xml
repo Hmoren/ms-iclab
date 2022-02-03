@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.devopsusach2020</groupId>
-	<artifactId>devopsusach2020</artifactId>
+	<artifactId>DevOpsUsach2020</artifactId>
 	<version>0.0.1</version>
-	<name>Ms-Iclab</name>
+	<name>msIclab</name>
 	<description>Proyecto de ejemplo para el desarrollo del diplomado DevOps Universidad de Santiago de Chile 2020</description>
 
 	<properties>
